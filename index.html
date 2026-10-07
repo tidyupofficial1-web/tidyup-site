@@ -1,1 +1,54 @@
-prova
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TidyUp - Welcome</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <video id="introVideo" autoplay muted playsinline>
+        <source src="Tidiup.mp4" type="video/mp4">
+        Il tuo browser non supporta i video HTML5.
+    </video>
+
+    <script>
+        const video = document.getElementById('introVideo');
+        
+        video.onended = function() {
+            // Rileva la lingua del browser dell'utente (es. "it-IT" diventa "it", "en-US" diventa "en")
+            const userLang = navigator.language || navigator.userLanguage; 
+            const langCode = userLang.substring(0, 2).toLowerCase();
+
+            // Elenco delle lingue supportate dal sito
+            const supportedLangs = ['it', 'en', 'fr', 'de', 'es'];
+
+            // Se la lingua del browser è supportata, va alla cartella dedicata, altrimenti di default va su Inglese (en)
+            if (supportedLangs.includes(langCode)) {
+                window.location.href = langCode + "/index.html";
+            } else {
+                window.location.href = "en/index.html";
+            }
+        };
+    </script>
+
+</body>
+</html>
